@@ -6,12 +6,13 @@ import { useAuth } from '../auth/useAuth';
 const navItems = [
   { to: '/', label: 'Overview', icon: LayoutDashboard },
   { to: '/tasks', label: 'Tasks', icon: ListTodo },
-  { to: '/users', label: 'Users', icon: Users },
 ];
 
 export function AppLayout() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+
+  const visibleNavItems = user?.role === 'employee' ? navItems : [...navItems, { to: '/users', label: 'Users', icon: Users }];
 
   function handleLogout() {
     logout();
@@ -23,10 +24,10 @@ export function AppLayout() {
       <aside className="fixed inset-y-0 left-0 hidden w-64 border-r border-zinc-200 bg-white md:block">
         <div className="border-b border-zinc-200 px-6 py-5">
           <h1 className="text-lg font-semibold">TaskFlow</h1>
-          <p className="mt-1 text-sm text-zinc-500">RBAC Admin Dashboard</p>
+          <p className="mt-1 text-sm text-zinc-500">RBAC Dashboard</p>
         </div>
         <nav className="space-y-1 px-3 py-4">
-          {navItems.map((item) => (
+          {visibleNavItems.map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
@@ -67,8 +68,8 @@ export function AppLayout() {
               </button>
             </div>
           </div>
-          <nav className="mt-3 grid grid-cols-3 gap-2 md:hidden">
-            {navItems.map((item) => (
+          <nav className={clsx('mt-3 grid gap-2 md:hidden', visibleNavItems.length === 3 ? 'grid-cols-3' : 'grid-cols-2')}>
+            {visibleNavItems.map((item) => (
               <NavLink
                 key={item.to}
                 to={item.to}
@@ -92,3 +93,6 @@ export function AppLayout() {
     </div>
   );
 }
+
+
+

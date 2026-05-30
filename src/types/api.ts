@@ -6,6 +6,7 @@ export type User = {
   name: string;
   email: string;
   role: Role;
+  managerId?: number | null;
   createdAt?: string;
 };
 
@@ -15,7 +16,9 @@ export type Task = {
   description?: string | null;
   status: TaskStatus;
   assignedToId: number;
+  assignedToName?: string | null;
   createdById: number;
+  createdByName?: string | null;
   createdAt?: string;
 };
 

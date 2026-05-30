@@ -14,6 +14,7 @@ export async function createUser(payload: {
   email: string;
   password: string;
   role: Role;
+  managerId?: number;
 }) {
   const response = await api.post<ApiResponse<LoginResponse>>('/auth/register', payload);
   return response.data.data.user;
@@ -24,9 +25,10 @@ export async function fetchUsers() {
   return response.data.data;
 }
 
-export async function updateUserRole(userId: number, role: Role) {
+export async function updateUserRole(userId: number, role: Role, managerId?: number | null) {
   const response = await api.patch<ApiResponse<User>>(`/users/${userId}/role`, {
     role,
+    managerId,
   });
   return response.data.data;
 }
@@ -57,5 +59,3 @@ export async function updateTaskStatus(taskId: number, status: TaskStatus) {
   });
   return response.data.data;
 }
-
-
