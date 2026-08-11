@@ -1,10 +1,10 @@
 # TaskFlow Admin Dashboard
 
-TaskFlow Admin Dashboard is a React frontend for the TaskFlow RBAC API. It demonstrates a complete full-stack workflow with JWT login, role-based navigation, task management, user management, manager-team visibility, and API integration.
+TaskFlow Admin Dashboard is a React.js frontend for the TaskFlow RBAC API, providing role-based task management workflows for Admin, Manager, and Employee users.
 
 ## Tech Stack
 
-- React
+- React.js
 - TypeScript
 - Vite
 - Tailwind CSS
@@ -14,7 +14,7 @@ TaskFlow Admin Dashboard is a React frontend for the TaskFlow RBAC API. It demon
 
 ## Features
 
-- Login with TaskFlow API credentials
+- JWT-based login through the TaskFlow API  
 - Protected routes using local auth context
 - Axios interceptor for authenticated API requests
 - Role-based sidebar navigation
